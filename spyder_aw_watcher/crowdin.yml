@@ -1,0 +1,15 @@
+# ----------------------------------------------------------------------------
+# Copyright © 2022, Steven Masfaraud
+#
+# Licensed under the terms of the GNU General Public License v3
+# ----------------------------------------------------------------------------
+
+commit_message: '[ci skip] New %language% translation from Crowdin'
+append_commit_message: false
+files:
+  - source: /spyder_aw_watcher/spyder/locale/spyder_aw_watcher.pot
+    translation: /spyder_aw_watcher/spyder_aw_watcher/locale/%two_letters_code%/LC_MESSAGES/%file_name%.po
+    languages_mapping:
+      two_letters_code:
+        pt-BR: pt_BR
+        zh-CN: zh_CN
