@@ -94,12 +94,23 @@ class ActivityWatchSpyderplugin(SpyderPluginV2):
             print('')
             # editor.sig_filename_changed.connect(self._track_filename)
             # print('editor found')
+            editor.sig_file_opened_closed_or_updated.connect(self.set_current_opened_file)
     
     def _track_filename(self):
         editor = self.get_plugin(Plugins.Editor)
         if editor:
             print('ee', editor.get_current_filename())
-            
+
+    def set_current_opened_file(self, path, _language):
+        """
+        Set path of current opened file in editor.
+        Parameters
+        ----------
+        path: str
+            Path of editor file.
+        """
+        print('path', path, _language)
+        # self.get_widget().set_file_path(path)
             
     @property
     def aw_status(self):
