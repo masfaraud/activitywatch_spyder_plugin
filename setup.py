@@ -27,6 +27,7 @@ setup(
         "qtpy",
         "qtawesome",
         "spyder>=5.0.1",
+        "aw-client"
     ],
     packages=find_packages(),
     entry_points={

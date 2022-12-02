@@ -34,7 +34,7 @@ class ActivityWatchSpyderplugin(SpyderPluginV2):
     """
 
     NAME = "spyder_aw_watcher"
-    REQUIRES = [Plugins.StatusBar]
+    REQUIRES = [Plugins.StatusBar, Plugins.Editor]
     OPTIONAL = []
     CONTAINER_CLASS = ActivityWatchSpyderpluginContainer
     CONF_SECTION = NAME
@@ -59,6 +59,10 @@ class ActivityWatchSpyderplugin(SpyderPluginV2):
         self.client = ActivityWatchClient("test-client", testing=True)
         bucket_id = "{}_{}".format("test-client-bucket", self.client.client_hostname)
         connection_success = True
+        
+        # Try to access editor
+        self.opened_file = None
+        
         try:
             self.client.create_bucket(bucket_id, event_type="dummydata")
         except:
@@ -69,7 +73,7 @@ class ActivityWatchSpyderplugin(SpyderPluginV2):
             data = {'file': 'test.py', 'project': '/etc/test', 'language': 'python'}
             now = datetime.now(timezone.utc)
             event = Event(timestamp=now, data=data)
-            inserted_event = self.client.insert_event(bucket_id, shutdown_event)
+            inserted_event = self.client.insert_event(bucket_id, event)
             print(inserted_event)
             self.aw_status.set_value('Connected to AW')
         
@@ -79,6 +83,23 @@ class ActivityWatchSpyderplugin(SpyderPluginV2):
         statusbar = self.get_plugin(Plugins.StatusBar)
         if statusbar:
             statusbar.add_status_widget(self.aw_status)
+
+    @on_plugin_available(plugin=Plugins.Editor)
+    def on_editor_available(self):
+        editor = self.get_plugin(Plugins.Editor)
+        if editor:
+            print('editor found')
+            print('editor.codeeditor', [k for k in sorted(editor.__dict__.keys())])
+            print('editor.dockwidget', [k for k in sorted(editor.dockwidget.__dict__.keys())])
+            print('')
+            # editor.sig_filename_changed.connect(self._track_filename)
+            # print('editor found')
+    
+    def _track_filename(self):
+        editor = self.get_plugin(Plugins.Editor)
+        if editor:
+            print('ee', editor.get_current_filename())
+            
             
     @property
     def aw_status(self):
