@@ -120,7 +120,7 @@ class ActivityWatchSpyderplugin(SpyderPluginV2):
             self.current_file = path
             self.current_language = language
 
-        self.aw_status.set_value(f"{path}  {self.current_file}")
+        # self.aw_status.set_value(f"{path}  {self.current_file}")
 
         if path != self.current_file:
             self.current_file = path
