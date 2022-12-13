@@ -22,18 +22,11 @@ setup(
     description="ActivityWatch watcher plugin for spyder",
     license="GNU General Public License v3",
     url="https://github.com/masfaraud/spyder_aw_watcher",
-    python_requires='>= 3.7',
-    install_requires=[
-        "qtpy",
-        "qtawesome",
-        "spyder>=5.0.1",
-        "aw-client"
-    ],
+    python_requires=">= 3.7",
+    install_requires=["qtpy", "qtawesome", "spyder>=5.0.1", "aw-client"],
     packages=find_packages(),
     entry_points={
-        "spyder.plugins": [
-            "spyder_aw_watcher = spyder_aw_watcher.spyder.plugin:ActivityWatchSpyderplugin"
-        ],
+        "spyder.plugins": ["spyder_aw_watcher = spyder_aw_watcher.spyder.plugin:ActivityWatchSpyderplugin"],
     },
     classifiers=[
         "Operating System :: MacOS",

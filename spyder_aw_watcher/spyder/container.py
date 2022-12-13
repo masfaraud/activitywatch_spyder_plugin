@@ -25,7 +25,7 @@ class ActivityWatchSpyderpluginContainer(PluginMainContainer):
     # ------------------------------------------------------------------------
     def setup(self):
         self.activity_watch_status = ActivityWatchStatus(self)
-        self.activity_watch_status.set_value('Starting watcher')
+        self.activity_watch_status.set_value("Starting watcher")
 
     def update_actions(self):
         pass

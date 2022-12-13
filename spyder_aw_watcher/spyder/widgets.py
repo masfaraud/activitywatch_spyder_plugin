@@ -9,11 +9,9 @@ Activity Watch Spyder plugin Main Widget.
 """
 
 
-
 # Spyder imports
 from spyder.api.config.decorators import on_conf_change
 from spyder.api.translations import get_translation
-
 
 
 from spyder.api.widgets.status import StatusBarWidget
@@ -25,7 +23,6 @@ import qtawesome as qta
 
 # Localization
 _ = get_translation("spyder_aw_watcher.spyder")
-
 
 
 class ActivityWatchStatus(StatusBarWidget):
